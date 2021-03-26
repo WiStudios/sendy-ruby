@@ -34,10 +34,11 @@ module Sendy
       response.body
     end
 
-    def subscribe(list_id, email, name = nil)
+    def subscribe(list_id, email, name = nil, extra = {})
       response = connection.post "subscribe" do |req|
         params = {list: list_id, email: email, boolean: true}
         params[:name] = name if name
+        params.merge!(extra)
         req.body = params
       end
 
