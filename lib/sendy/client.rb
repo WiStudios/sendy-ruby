@@ -38,6 +38,7 @@ module Sendy
       response = connection.post "subscribe" do |req|
         params = {list: list_id, email: email, boolean: true}
         params[:name] = name if name
+        params[:api_key] = @key
         params.merge!(extra)
         req.body = params
       end
